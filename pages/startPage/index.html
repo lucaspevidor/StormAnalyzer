@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <title>StormAnalyzer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;200;300;400&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <script src="/luaScript.js"></script>
+</head>
+<body>
+    <div class="centerGuide">
+        <h1>StormAnalyzer</h1>
+        <h2>Welcome to StormAnalyzer</h2>
+        <div class="horizontalLine"></div>
+        <p>StormAnalyzer is a tool to be used together with StormWorks for analyzing vehicle data.
+        The data can be exported to a CSV file using StormAnalyzer, and then can be used in MatLab to be processed, or to tune controllers, etc.</p>
+        <br>
+        <p>To export the data you have to run the application first executing the .bat file in the root folder.
+        If the application is running correctly you should see the following message:</p>
+        <div class="codeRegion">
+            <span>> Server is listening on port 80</span>
+        </div>
+        <p>The application provides the following endpoint for datalogging:</p>
+        <div class="codeRegion">
+            <span>> /addDataPoint?name=
+                <span class="greenSpan">{fileName}</span>
+                &amp;x=
+                <span class="greenSpan">{tick}</span>
+                &amp;d1=
+                <span class="greenSpan">{d1}</span>
+                &amp;d2=
+                <span class="greenSpan">{d2}</span>
+                &amp;d3=
+                <span class="greenSpan">{d3}</span>
+                &amp;d4=
+                <span class="greenSpan">{d4}</span>                
+            </span>
+        </div>
+        <p>That way, you can log data by sending <span class="highlight">GET</span> requests to the endpoint:</p>
+        <div class="codeRegion">
+            <span>/addDataPoint?name=mydata&x=0&d1=1.1&d2=2.1&d3=5&d4=0</span>
+            <span>/addDataPoint?name=mydata&x=1&d1=1.3&d2=2.0&d3=4&d4=0.05</span>
+            <span>/addDataPoint?name=mydata&x=2&d1=1.5&d2=2.2&d3=3&d4=0.1</span>
+            <span>/addDataPoint?name=mydata&x=3&d1=1.7&d2=2.4&d4=0.15</span>
+            <span>/addDataPoint?name=mydata&x=4&d1=1.1&d2=2.1&d3=5&d4=0</span>
+        </div>
+        <p>The application will log the provided data to a file named <span class="highlight">mydata.csv</span>, located inside the folder
+            <span class="highlight">data</span> of the application. If you look closely, you can omit parameters from
+            <span class="highlight">d1</span> to <span class="highlight">d4</span>. You can also omit x, but it isn't recommended, since it
+            corresponds to the index of the data. The ommited parameters will be logged as 0. You can access the link below to try it.
+            A file named <span class="highlight">data.csv</span> will be created in the <span class="highlight">data</span> folder of the application.</p>
+
+            <br><a href="http://localhost/addDataPoint?name=data&x=0&d1=2&d3=5.54" target="_blank">http://localhost/addDataPoint?name=data&x=0&d1=2&d3=5.54</a><br>
+        
+            Here is an example of the data that would be logged:
+            <div class="codeRegion">    
+                <span class="comment"># Contents of /StormAnalyzer/data/mydata.csv</span><br>            
+                <span class="white">0;1.1;2.1;5;0</span>
+                <span class="white">1;1.3;2.0;4;0.05</span>
+                <span class="white">2;1.5;2.2;3;0.1</span>
+                <span class="white">3;1.7;2.4;0.15</span>
+                <span class="white">4;1.1;2.1;5;0</span>
+            </div>
+
+        </p>
+        <h2>Using the app with StormWorks</h2>
+        <div class="horizontalLine"></div>
+        <p>In order to export data from StormWorks to StormAnalyzer, you have to build a microcontroller that takes a numeric input and sends it to a 
+            Lua Block, where it will then be sent to StormAnalyzer as a <span class="highlight">GET</span> request. Here is an example of
+            the MC logic and Lua code:
+        </p>
+
+        <div class="imageRegion">
+            <img src="/res/logic.png" alt="MicroController logic">
+        </div>
+
+        <div id="luaScript" class="codeRegion">
+            <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+            <script>
+                const content = "\`\`\`lua" + microcontrollerCode + "\`\`\`";
+                console.log(content);
+                document.getElementById('luaScript').innerHTML =
+                marked.parse(content);
+            </script>
+        </div>
+
+        <p>Basically the Microcontroller has 4 numeric inputs for the data to be logged and 1 for enabling the data logging. They are sent to the
+            Lua block, where they are processed and then sent to the StormAnalyzer with the function <span class="highlight">async.httpGet</span>.            
+        </p>
+    </div>
+</body>
+</html>

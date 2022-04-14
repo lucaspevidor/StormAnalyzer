@@ -1,0 +1,17 @@
+{
+  "name": "StormAnalyzer",
+  "version": "0.1.0",
+  "description": "Analizador offline de dados para o StormWorks",
+  "main": "server.js",
+  "author": "Lucas Pevidor",
+  "license": "MIT",
+  "dependencies": {
+    "csv-write-stream": "^2.0.0",
+    "express": "^4.17.3",
+    "marked": "^4.0.14",
+    "open": "^8.4.0"
+  },
+  "scripts": {
+    "dev": "node server.js"
+  }
+}

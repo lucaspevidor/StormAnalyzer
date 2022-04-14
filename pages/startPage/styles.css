@@ -1,0 +1,124 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #f2f2f4;   
+    display: flex;
+    flex-direction: column;
+}
+
+div {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+.centerGuide {
+    width: 1400px;
+    margin-top: 100px;
+    background-color: #6298f0;
+    align-self: center;
+    border-radius: 100px 100px 0 0;
+    padding: 30px;
+    box-shadow: 0px 0px 50px #a0a0a0;
+}
+
+.horizontalLine {
+    width: 100%;
+    height: 2px;
+    background-color: rgba(31, 58, 102, 0.1);;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+.codeRegion {
+    width: 100%;    
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background-color: #151617;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+    
+}
+
+.codeRegion span, .language-lua {
+    color: #e3a246;
+    font-weight: 300;
+    font-family: 'Roboto mono', monospace;
+    display: flex;
+}
+
+.codeRegion span.white {
+    color: #fff;
+}
+
+.codeRegion span.comment {
+    color: #666769;
+}
+
+.codeRegion .greenSpan {
+    color: #4ac573;
+}
+
+.code {
+    color: #e3a246;
+    font-weight: 300;
+    font-family: 'Roboto mono', monospace;
+    display: flex;
+}
+
+.highlight {
+    background-color: rgb(24, 25, 26);
+    color: #e3a246;
+    font-weight: 300;
+    font-family: 'Roboto mono', monospace;  
+    padding: 0 5px 0 5px;
+    border-radius: 10px;  
+}
+
+.imageRegion {
+    width: 80%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+    align-self: center;
+}
+
+h1 {
+    font-size: 50px;
+    color: #fff;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 30px;
+    color: #1f3a66;
+    margin-bottom: 10px;
+    font-weight: 400;
+}
+
+p, span {
+    font-size: 18px;
+    color: #1f3a66;
+    text-align: justify;
+    text-justify: inter-word;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: #dfe8f0;
+    font-weight: 300;
+    font-family: 'Roboto mono', monospace;    
+}
