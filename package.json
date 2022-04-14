@@ -1,5 +1,5 @@
 {
-  "name": "StormAnalyzer",
+  "name": "stormanalyzer",
   "version": "0.1.0",
   "description": "Analizador offline de dados para o StormWorks",
   "main": "server.js",
@@ -11,7 +11,17 @@
     "marked": "^4.0.14",
     "open": "^8.4.0"
   },
+  "devDependencies": {
+    "pkg": "^5.6.0"
+  },
+  "pkg": {
+    "scripts": "pages/**/*.js",
+    "assets": "pages/**/*.*",
+    "outputPath": "dist"
+  },
+  "bin": "server.js",
   "scripts": {
-    "dev": "node server.js"
+    "dev": "node server.js",
+    "build": "pkg package.json"
   }
 }
