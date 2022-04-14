@@ -4,6 +4,8 @@ Hello dear person! Just so you know, I'm actually an Automation Engineer and I'm
 
 Feel free to contribute!
 
+[Download page](https://github.com/lucaspevidor/StormAnalyzer/releases/)
+
 ## Welcome to StormAnalyzer
 StormAnalyzer is a tool to be used together with StormWorks for analyzing vehicle data. The data can be exported to a CSV file using StormAnalyzer, and then can be used in MatLab to be processed, or to tune controllers, etc.
 
@@ -73,3 +75,12 @@ end
 ```
 
 Basically the Microcontroller has 4 numeric inputs for the data to be logged and 1 for enabling the data logging. They are sent to the Lua block, where they are processed and then sent to the StormAnalyzer with the function ```async.httpGet```.
+
+## Building the application
+
+In order to build the application, just execute the following command:
+```bash
+yarn build
+```
+
+The binaries will be created on the ```dist``` folder. In order to run the application correctly a folder named ```data``` should be created on the same directory as the executable.
